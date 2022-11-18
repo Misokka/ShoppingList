@@ -1,18 +1,53 @@
 import { Component } from '@angular/core';
+import { Platform, NavController } from '@ionic/angular';
+import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
+import { AuthService } from './services/auth.service';
+import { AlertService } from './services/alert.service';
 @Component({
   selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+    {
+      title: 'Dashboard',
+      url: '/list',
+      icon: 'home'
+    },
+    {
+      title: 'List',
+      url: '/dashboard',
+      icon: 'list'
+    },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor(
+    private platform: Platform,
+    private statusBar: StatusBar,
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private alertService: AlertService
+  ) {
+    this.initializeApp();
+  }
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.authService.getToken();
+    });
+  }
+  // Lorsque le bouton de déconnexion est pressé
+
+  logout() {
+    this.authService.logout().subscribe(
+      data => {
+        this.alertService.presentToast(data['message']);
+      },
+      error => {
+        console.log(error);
+      },
+      () => {
+        this.navCtrl.navigateRoot('/landing');
+      }
+    );
+  }
 }

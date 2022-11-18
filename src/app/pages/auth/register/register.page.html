@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button color="light" slot="start" (click)="dismissRegister()">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-title>Créer un compte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Formulaire d'inscription -->
+
+  <form #form="ngForm" (ngSubmit)="register(form)" method="post" action='register'>
+    <ion-item>
+      <ion-label position="floating">Prénom</ion-label>
+      <ion-input ngModel name="fName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nom</ion-label>
+      <ion-input ngModel name="lName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" ngModel name="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mot de passe</ion-label>
+      <ion-input type="password" ngModel name="password"></ion-input>
+    </ion-item>
+
+    <p text-right></p>
+    <ion-footer>
+      <ion-button fill="clear" type="submit" expand="block" color="danger">Créer un compte</ion-button>
+    </ion-footer>
+  </form>
+  <p text-center></p>
+  <ion-button fill="clear" expand="block" color="primary" (click)="loginModal()">Se connecter</ion-button>
+</ion-content>

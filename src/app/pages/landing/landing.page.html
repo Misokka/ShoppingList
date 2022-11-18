@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center"><ion-icon name="bag-add"></ion-icon>ㅤSHOPPINGLIST</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content contentId="landingContent">
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">BIENVENUE SUR SHOPPINGLIST</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-text-center">Connecte toi pour faire ta liste de course</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+      <ion-row>
+        <ion-col>
+
+          <!-- Boutton pour afficher le loginModal -->
+
+          <ion-button color="primary" fill="clear" expand="block" color="primary" (click)="login()">Se connecter</ion-button>
+        </ion-col>
+        <ion-col>
+
+          <!-- Boutton pour afficher le registerModal -->
+
+          <ion-button color="primary" fill="clear" expand="block" color="danger" (click)="register()">Créer un compte</ion-button>
+        </ion-col>
+      </ion-row>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-router-outlet id="landingContent"></ion-router-outlet>
